@@ -3,7 +3,7 @@ import { BlockHeightKey, BlockHeightSwCache, GQLEdgeInterface, InteractionsLoade
 const logger = LoggerFactory.INST.create(__filename);
 
 /**
- * This implementation InteractionsLoader tries to limit the amount of interactions
+ * This implementation of the {@link InteractionsLoader} tries to limit the amount of interactions
  * with GraphQL endpoint. Additionally, it is downloading only the missing interactions
  * (starting from the latest already cached) - to additionally limit the amount of "paging".
  */
@@ -26,12 +26,17 @@ export class CacheableContractInteractionsLoader implements InteractionsLoader {
     };
 
     if (cachedHeight >= toBlockHeight) {
-      logger.debug('Reusing interactions cached at higher block height:', cachedHeight);
+      logger.debug('Reusing interactions cached at block height:', cachedHeight);
       return cachedValue.filter(
         (interaction: GQLEdgeInterface) =>
           interaction.node.block.height >= fromBlockHeight && interaction.node.block.height <= toBlockHeight
       );
     }
+
+    logger.trace('Cached:', {
+      cachedHeight,
+      cachedValue
+    });
 
     const missingInteractions = await this.baseImplementation.load(contractId, cachedHeight + 1, toBlockHeight);
 
