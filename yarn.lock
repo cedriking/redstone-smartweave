@@ -1490,10 +1490,8 @@ arlocal@^1.0.29:
     sqlite3 "^5.0.2"
     tsc-watch "^4.4.0"
 
-arlocal@^1.0.33:
+"arlocal@file:.yalc/arlocal":
   version "1.0.33"
-  resolved "https://registry.yarnpkg.com/arlocal/-/arlocal-1.0.33.tgz#b0ffcb3267288c29a7b483d4465cc21297ca726d"
-  integrity sha512-y1VKYzstUMb96HpcfFw2/PTI1RO8qjz0e6fXENZix031ONOEVwYRi3lC99jolho+6nsG3J+MRCnEKoxxrEzPNw==
   dependencies:
     "@koa/cors" "^3.1.0"
     ans104 "^0.5.4"
